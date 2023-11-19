@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class trial {
     private String name;
     private int age;
@@ -8,10 +10,15 @@ public class trial {
     }
 
     @Override
-    public String toString() {
-        return "trial{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        trial trial = (trial) o;
+        return age == trial.age && Objects.equals(name, trial.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
     }
 }
